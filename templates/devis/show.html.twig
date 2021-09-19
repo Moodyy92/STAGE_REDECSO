@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis{% endblock %}
+
+{% block body %}
+    <h1>Devis</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ devi.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ devi.date ? devi.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Objet</th>
+                <td>{{ devi.objet }}</td>
+            </tr>
+            <tr>
+                <th>Ref</th>
+                <td>{{ devi.ref }}</td>
+            </tr>
+            <tr>
+                <th>Signature</th>
+                <td>{{ devi.signature ? devi.signature|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Descriptif</th>
+                <td>{{ devi.descriptif }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('devis_index') }}">back to list</a>
+
+    <a href="{{ path('devis_edit', {'id': devi.id}) }}">edit</a>
+
+    {{ include('devis/_delete_form.html.twig') }}
+{% endblock %}
