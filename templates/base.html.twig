@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -11,14 +11,14 @@
         {% endblock %}
     </head>
 
-    <body>
+    <body class="h-100">
         {% if app.user %}
-            <header class="fixed-top mb-5">
+            <header class="fixed-top">
                 {% include "./partials/navbar.html.twig" %}
             </header>
         {% endif %}
 
-        <div class="container" id="content">
+        <div class="container h-100" id="content">
             {% block body %}{% endblock %}
         </div>
 

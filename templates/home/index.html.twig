@@ -1,75 +1,86 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Acceuil{% endblock %}
+
+
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('home') }}
+    {% endblock %}
     {% block javascripts %}
         {{ encore_entry_script_tags('home') }}
     {% endblock %}
-{% block body %}
-
-        <table class="dataTable table table-bordered table-stripped">
-           <thead>
-               <tr>
-                   <th>Id</th>
-                   <th>Nom</th>
-                   <th>Prénom</th>
-                   <th>Entreprise</th>
-                   <th>civilite</th>
-                   <th>Adresse</th>
-                   <th>Cplt_adresse</th>
-                   <th>Telephone</th>
-                   <th>Email</th>
-                   <th>CodePostal</th>
-                   <th>Ville</th>
-               </tr>
-           </thead>
-
-            <tbody>
-                {% for client in clients %}
-                    <tr>
-                        <th>{{ client.id }}</th>
-                        <th>{{ client.Nom }}</th>
-                        <th>{{ client.prenom }}</th>
-                        <th>{{ client.entreprise ? 'Yes' : 'No' }}</th>
-                        <th>{{ client.civilite }}</th>
-                        <th>{{ client.adresse }}</th>
-                        <th>{{ client.cpltAdresse }}</th>
-                        <th>{{ client.telephone }}</th>
-                        <th>{{ client.email }}</th>
-                        <th>{{ client.codePostal }}</th>
-                        <th>{{ client.ville }}</th>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
 
 
-    <div class="row justify-content-around">
-        <a href="{{ path('devis_index') }}" class="col-5 m-1 col-xs-10 ">
+    {% block body %}
 
-            <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">
-                Devis
-            </button>
-        </a>
 
-        <a href="" class="col-5 m-1 col-xs-10 ">
-            <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">
-                Facture
-            </button>
-        </a>
+    <section class="portfolio-experiment h-100 w-100 d-flex justify-content-around flex-column ">
 
-        <a href="{{ path('client_index') }}" class="col-5 m-1 col-xs-10 ">
-            <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">
-                Client
-            </button>
-        </a>
+        <div class="d-flex justify-content-around ">
+            <a class="" href="{{ path('devis_index') }} ">
+                <span class="text">Devis</span>
+                <span class="line -right"></span>
+                <span class="line -top"></span>
+                <span class="line -left"></span>
+                <span class="line -bottom"></span>
+            </a>
 
-        <a href="{{ path('produit_index') }}" class="col-5 m-1 col-xs-10 ">
-            <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">
-                Produit
-            </button>
-        </a>
-    </div>
+            <a class="" href="{{ path('devis_index') }} ">
+                <span class="text">Facture</span>
+                <span class="line -right"></span>
+                <span class="line -top"></span>
+                <span class="line -left"></span>
+                <span class="line -bottom"></span>
+            </a>
+        </div>
+
+        <div class="d-flex justify-content-around">
+            <a class="" href="{{ path('client_index') }} ">
+                <span class="text">Client</span>
+                <span class="line -right"></span>
+                <span class="line -top"></span>
+                <span class="line -left"></span>
+                <span class="line -bottom"></span>
+            </a>
+
+            <a class="" href="{{ path('produit_index') }} ">
+                <span class="text"> Produit</span>
+                <span class="line -right"></span>
+                <span class="line -top"></span>
+                <span class="line -left"></span>
+                <span class="line -bottom"></span>
+            </a>
+        </div>
+    </section>
 
 
 
+
+{#        <div class="row justify-content-around ">#}
+{#            <a href="{{ path('devis_index') }}" class="col-5 m-1 col-xs-10 ">#}
+
+{#                <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">#}
+{#                    Devis#}
+{#                </button>#}
+{#            </a>#}
+
+{#            <a href="" class="col-5 m-1 col-xs-10 ">#}
+{#                <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">#}
+{#                    Facture#}
+{#                </button>#}
+{#            </a>#}
+
+{#            <a href="{{ path('client_index') }}" class="col-5 m-1 col-xs-10 ">#}
+{#                <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">#}
+{#                    Client#}
+{#                </button>#}
+{#            </a>#}
+
+{#            <a href="{{ path('produit_index') }}" class="col-5 m-1 col-xs-10 ">#}
+{#                <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">#}
+{#                    Produit#}
+{#                </button>#}
+{#            </a>#}
+{#        </div>#}
     {% endblock %}

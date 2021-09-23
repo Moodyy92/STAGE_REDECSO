@@ -1,5 +1,5 @@
-import './styles/client.scss';
-////////////////// DATA TABLE //////////////////
+import './styles/produit.scss';
+
 let table= $('#dataTable').DataTable( {
     dom: 'Bfrtip',
     buttons: [
@@ -7,8 +7,8 @@ let table= $('#dataTable').DataTable( {
     ],
     language: datatablefr
 } );
-////////////////// DETAILS CLIENT //////////////////
-$(document).on('click','.client_show',function (){
+////////////////// DETAILS PRODUIT //////////////////
+$(document).on('click','.produit_show',function (){
 // console.log($(this).data('target'));
     $.get($(this).data('target'), function (html){
         $('#modal-body').html(html);
@@ -16,8 +16,17 @@ $(document).on('click','.client_show',function (){
         modal.show();
     })
 })
-////////////////// UPDATE CLIENT //////////////////
-$(document).on('click','.client_edit',function (){
+////////////////// UPDATE PRODUIT //////////////////
+$(document).on('click','.produit_edit',function (){
+    console.log($(this).data('target'));
+    $.get($(this).data('target'), function (html){
+        $('#modal-body').html(html);
+        let modal = new bootstrap.Modal(document.getElementById('modale'), {});
+        modal.show();
+    })
+})
+////////////////// ADD PRODUIT //////////////////
+$('.add_produit').on('click',function (){
 // console.log($(this).data('target'));
     $.get($(this).data('target'), function (html){
         $('#modal-body').html(html);
@@ -25,8 +34,8 @@ $(document).on('click','.client_edit',function (){
         modal.show();
     })
 })
-////////////////// ADD CLIENT //////////////////
-$('.add_client').on('click',function (){
+////////////////// DELETE PRODUIT //////////////////
+$(document).on('click','.produit_delete',function (){
 // console.log($(this).data('target'));
     $.get($(this).data('target'), function (html){
         $('#modal-body').html(html);
@@ -34,26 +43,17 @@ $('.add_client').on('click',function (){
         modal.show();
     })
 })
-////////////////// DELETE CLIENT //////////////////
-$(document).on('click','.client_delete',function (){
-// console.log($(this).data('target'));
-    $.get($(this).data('target'), function (html){
-        $('#modal-body').html(html);
-        let modal = new bootstrap.Modal(document.getElementById('modale'), {});
-        modal.show();
-    })
+////////////////// btn  PRODUIT //////////////////
+$(document).on('submit','#form_delete_produit', function (){
+    return confirm('Êtes-vous sûr de vouloir supprimer LE PRODUIT et toutes les informations du produit ?');
 })
-////////////////// BTN EDIT MODALE //////////////////
-$(document).on('click','.client_edit_modale',function (){
-// console.log($(this).data('target'));
-    $('#modal-body').slideToggle();
-    $.get($(this).data('url'), function (html){
-        $('#modal-body').html(html);
-        $('#modal-body').slideToggle();
-    })
+
+
+$(document).on('click','#add_toto',function (){
+    let toto= $(document.createElement('option'));
+    toto.val('toto')
+        .text('toto');
+  $('#produit_marque').append(toto);
 })
-////////////////// CASE MODALE ENTREPRISE //////////////////
-$(document).on('change','#client_entreprise', function (){
-    $('#client_civilite').toggle();
-    $('#client_prenom').toggle();
-})
+
+

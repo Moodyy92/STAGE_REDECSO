@@ -1,7 +1,11 @@
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import "~bootstrap/scss/bootstrap";
+$zindex-modal:1500;
+
 body {
-    background-color: lightgray;
+    background-color: #2d2d2d;
+    color: white;
 }
 #content{
-    margin-top: 8rem;
+    margin-top: 1rem;
 }

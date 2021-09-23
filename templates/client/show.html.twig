@@ -1,11 +1,4 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Client{% endblock %}
-
-{% block body %}
-    <h1>Client</h1>
-
-    <table class="dataTable table table-bordered table-stripped">
+<table class="dataTable table table-bordered table-stripped">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -54,9 +47,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('client_index') }}">back to list</a>
-
-    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
-
-    {{ include('client/_delete_form.html.twig') }}
-{% endblock %}
+{#<a href="{{ path('client_index') }}"><button class="btn-primary">Retour a la Liste</button></a>#}
+<button class="client_edit_modale btn-warning" data-url="{{ path('client_edit', {'id': client.id}) }}">Éditer Client</button>

@@ -25,7 +25,9 @@ class ProduitController extends AbstractController
     public function new(Request $request): Response
     {
         $produit = new Produit();
-        $form = $this->createForm(ProduitType::class, $produit);
+        $form = $this->createForm(ProduitType::class, $produit, [
+            'action'=>$this->generateUrl('produit_new'),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +55,9 @@ class ProduitController extends AbstractController
     #[Route('/{id}/edit', name: 'produit_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Produit $produit): Response
     {
-        $form = $this->createForm(ProduitType::class, $produit);
+        $form = $this->createForm(ProduitType::class, $produit,[
+            'action'=>$this->generateUrl('produit_edit',['id'=>$produit->getId()]),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

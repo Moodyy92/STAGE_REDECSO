@@ -1,4 +1,48 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+{{ form_start(form, {'attr': {'class': 'd-flex justify-content-around'} }) }}
+
+    <div class="my-custom-class-for-errors ">
+        {{ form_errors(form) }}
+    </div>
+<div class="col text-black">
+    {{ form_label(form.entreprise) }}
+    {{ form_widget(form.entreprise,{
+        'attr' : {
+            'class' : 'form-check-input'
+        }
+    }) }}
+</div>
+    <div class="text-black ">
+
+        <div class="col my-1">
+            {{ form_widget(form.civilite) }}
+        </div>
+        <div class="col my-1">
+            {{ form_widget(form.nom) }}
+        </div>
+        <div class="col my-1">
+            {{ form_widget(form.prenom) }}
+        </div>
+        <div class="col my-1">
+            {{ form_widget(form.adresse) }}
+        </div>
+        <div class="col my-1">
+            {{ form_widget(form.cplt_adresse) }}
+        </div>
+        <div class="col my-1">
+            {{ form_widget(form.telephone) }}
+        </div>
+        <div class="col my-1">
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="col my-1">
+            {{ form_widget(form.codePostal) }}
+        </div>
+        <div class="col my-1">
+            {{ form_widget(form.ville) }}
+        </div>
+        <div class="col my-1">
+            <button class="btn btn-outline-info "><i class="fas fa-plus-circle"></i></button>
+        </div>
+    </div>
 {{ form_end(form) }}

@@ -13,8 +13,12 @@ import './bootstrap';
 
 
 //////////////////// DATATABLE ////////////////////
-
+window.datatablefr = require('./datatable_fr.json');
 var $  = require( 'jquery' );
+require('bootstrap');
+window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
+require('@fortawesome/fontawesome-free/css/all.min.css');
+require('@fortawesome/fontawesome-free/js/all.js');
 require( 'datatables.net-bs5' )();
 require( 'datatables.net-editor-bs5' )();
 require( 'datatables.net-buttons-bs5' )();
@@ -22,4 +26,4 @@ require( 'datatables.net-buttons/js/buttons.html5.js' )();
 require( 'datatables.net-datetime' )();
 // require( 'datatables.net-responsive-bs5' )();
 require( 'datatables.net-select-bs5' )();
-require('bootstrap');
+

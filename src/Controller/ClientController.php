@@ -25,15 +25,18 @@ class ClientController extends AbstractController
     public function new(Request $request): Response
     {
         $client = new Client();
-        $form = $this->createForm(ClientType::class, $client);
+        $form = $this->createForm(ClientType::class, $client,[
+            'action'=>$this->generateUrl('client_new'),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+//            dd($form->getData());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($client);
             $entityManager->flush();
 
-            return $this->redirectToRoute('client_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('client_index',[], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('client/new.html.twig', [
@@ -53,7 +56,9 @@ class ClientController extends AbstractController
     #[Route('/{id}/edit', name: 'client_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Client $client): Response
     {
-        $form = $this->createForm(ClientType::class, $client);
+        $form = $this->createForm(ClientType::class, $client,[
+            'action'=>$this->generateUrl('client_edit',['id'=>$client->getId()]),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
