@@ -1,4 +1,12 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<!------------------------------------ INPUT FORM DE CATEGORIE ------------------------------------>
+            {{ form_start(categorieForm, {'attr': {'class': ''} }) }}
+            <div id="js-form-categorie" class="col-md-4">
+                <div class="col my-1 text-black">
+                    <h3>Categorie:</h3>
+                    {{ form_widget(categorieForm) }}
+                </div>
+                <div class="col my-1">
+                    <button class="btn btn-outline-info">{{ button_label|default('Save') }}</button>
+                </div>
+            </div>
+            {{ form_end(categorieForm) }}

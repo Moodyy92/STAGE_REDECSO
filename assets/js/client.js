@@ -1,4 +1,4 @@
-import './styles/client.scss';
+import '../styles/client.scss';
 ////////////////// DATA TABLE //////////////////
 let table= $('#dataTable').DataTable( {
     dom: 'Bfrtip',
@@ -42,6 +42,10 @@ $(document).on('click','.client_delete',function (){
         let modal = new bootstrap.Modal(document.getElementById('modale'), {});
         modal.show();
     })
+})
+////////////////// BTN confirm delete PRODUIT //////////////////
+$(document).on('submit','#form_delete_client', function (){
+    return confirm('Êtes-vous sûr de vouloir supprimer LE PRODUIT et toutes les informations du produit ?');
 })
 ////////////////// BTN EDIT MODALE //////////////////
 $(document).on('click','.client_edit_modale',function (){

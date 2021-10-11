@@ -31,7 +31,6 @@ class ProduitType extends AbstractType
                 'scale'=>2,
             ])
 
-            //TODO passer en comboBox ou AutoComplete les choix de marque
             ->add('marque', EntityType::class,[
                 'class' => Marque::class,
                 'query_builder' => function (EntityRepository $er) {

@@ -1,5 +1,16 @@
-<h1>Create new Produit</h1>
 
-{{ include('produit/_form.html.twig') }}
+<div class="justify-content-center">
 
+
+
+    <div class="form-check form-switch text-black">
+        <input class="form-check-input" type="checkbox" id="btn_marque_new">
+        <label class="form-check-label" for="btn_marque_new">Cocher pour crée une marque</label>
+        <div id="div_marque_new" style="display:none;">
+            {{ render( path('marque_new'))}}
+        </div>
+    </div>
+
+    {{ include('produit/_form.html.twig') }}
+</div>
 <button class="btn" id="add_toto">toto</button>

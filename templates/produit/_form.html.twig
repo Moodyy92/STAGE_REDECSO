@@ -4,19 +4,19 @@
     {{ form_errors(form) }}
 </div>
 
-<div class="text-black">
-    <div class="col my-1">
-        {{ form_widget(form.libelle) }}
-    </div>
-    <div class="col my-1">
-        {{ form_widget(form.prix) }}
-    </div>
-    <div class="col my-1">
-        {{ form_widget(form.marque) }}
-    </div>
+    <div class="text-black">
+        <div class="col my-1">
+            {{ form_widget(form.libelle) }}
+        </div>
+        <div class="col my-1">
+            {{ form_widget(form.prix) }}
+        </div>
+        <div class="col my-1">
+            {{ form_widget(form.marque) }}
+        </div>
 
-    <div class="col my-1">
-        <button class="btn btn-outline-info "><i class="fas fa-plus-circle"></i></button>
+        <div class="col my-1">
+            <button class="btn btn-outline-info ">Valider les modifications</button>
+        </div>
     </div>
-</div>
 {{ form_end(form) }}

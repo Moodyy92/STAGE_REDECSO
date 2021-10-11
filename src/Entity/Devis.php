@@ -50,6 +50,11 @@ class Devis
      */
     private $descriptif;
 
+    public function __toString(): string
+    {
+        return $this->id;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

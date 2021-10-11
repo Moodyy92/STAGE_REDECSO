@@ -23,17 +23,17 @@ class ClientRepository extends ServiceEntityRepository
     //  * @return Client[] Returns an array of Client objects
     //  */
 
-//    public function findByClient($value)
-//    {
-//        $query = $this->createQueryBuilder('c'); // SELECT * FROM sorties AS s
-//
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.id = :val')            //WHERE c.id = ?
-//            ->setParameter('val', $value['nom'])    //?= $value['nom'] -> id
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findOneAsArray($value)
+    {
+        $query = $this->createQueryBuilder('c'); // SELECT * FROM sorties AS s
+
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.id = :val')            //WHERE c.id = ?
+            ->setParameter('val', $value)    //?= $value['nom'] -> id
+            ->getQuery()
+            ->getArrayResult()[0]
+        ;
+    }
 
 
     /*

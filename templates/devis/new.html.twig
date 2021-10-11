@@ -2,10 +2,52 @@
 
 {% block title %}New Devis{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('devis_client') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('devis_client') }}
+{% endblock %}
+
 {% block body %}
-    <h1>Create new Devis</h1>
+<div class="d-flex justify-content-center"  >
+    <container class="d-flex row">
+        <div class="d-flex justify-content-center">
+            {{ include('devis/_form.html.twig') }}
+        </div>
 
-    {{ include('devis/_form.html.twig') }}
+        <div id="js-form-etape-2" class="d-flex justify-content-center row mt-5" >
+            <button id="js-btn-back-form" class="btn btn-outline-danger mx-2 row">Retour</button>
+            <div class="d-flex row">
+                <h3  class="d-flex justify-content-center mx-2">Choisissez l'action que vous souhaitez crée :</h3>
+                <div class="d-flex justify-content-center">
+                    <button id="js-btn-show-Categorie" class="btn btn-outline-primary mx-2">Une catégorie</button>
+                    <button id="js-btn-show-tache" class="btn btn-outline-primary mx-2">Une Tache</button>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('devis_index') }}">back to list</a>
+        <div class="d-flex justify-content-center ">
+            {{ include('categorie/_form.html.twig') }}
+        </div>
+
+        <div class="d-flex justify-content-center">
+            {{ include('tache/_form.html.twig') }}
+        </div>
+
+        <div class="d-flex justify-content-center">
+            {{ include('produit/partials/_form_devis.html.twig') }}
+        </div>
+    </container>
+
+
+    <footer class=" d-flex ">
+        <a href="{{ path('devis_index') }}">
+            <button class="btn btn-outline-danger">Liste Facture</button>
+        </a>
+    </footer>
+</div>
+
+
 {% endblock %}

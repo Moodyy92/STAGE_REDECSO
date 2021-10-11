@@ -26,4 +26,5 @@ require( 'datatables.net-buttons/js/buttons.html5.js' )();
 require( 'datatables.net-datetime' )();
 // require( 'datatables.net-responsive-bs5' )();
 require( 'datatables.net-select-bs5' )();
+import 'select2';
 

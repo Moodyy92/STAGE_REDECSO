@@ -6,9 +6,11 @@ use App\Entity\Marque;
 use App\Form\MarqueType;
 use App\Repository\MarqueRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Json;
 
 #[Route('/marque')]
 class MarqueController extends AbstractController
@@ -22,18 +24,22 @@ class MarqueController extends AbstractController
     }
 
     #[Route('/new', name: 'marque_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, MarqueRepository $marqueRepo): Response
     {
         $marque = new Marque();
-        $form = $this->createForm(MarqueType::class, $marque);
+        $form = $this->createForm(MarqueType::class, $marque, [
+            'action'=>$this->generateUrl('marque_new'),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($marque);
             $entityManager->flush();
+//        dd($marque);
+            $marque = $marqueRepo->findAsArray($marque->getId());
 
-            return $this->redirectToRoute('marque_index', [], Response::HTTP_SEE_OTHER);
+            return new JsonResponse($marque) ;
         }
 
         return $this->renderForm('marque/new.html.twig', [

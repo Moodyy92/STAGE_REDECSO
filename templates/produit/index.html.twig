@@ -9,21 +9,21 @@
 {% block body %}
     <h1>Produit</h1>
 
-    <table id="dataTable" class="table table-bordered table-stripped text-white my-5">
+    <table id="dataTable" class="table table-bordered table-stripped text-white my-1">
         <thead>
             <tr>
                 <th>Marque</th>
                 <th>Libelle</th>
-                <th>Prix</th>
+                <th>Prix <i class="fas fa-euro-sign"></i></th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for produit in produits %}
             <tr class="table-dark">
-                <td class="table-secondary">{{ produit.marque.libelle }}</td>
-                <td class="table-secondary">{{ produit.libelle }}</td>
-                <td class="table-secondary">{{ produit.prix }} €</td>
+                <td class="table-secondary text-center">{{ produit.marque.libelle }}</td>
+                <td class="table-secondary text-center">{{ produit.libelle }}</td>
+                <td class="table-secondary text-center">{{ produit.prix }}</td>
                 <td class="d-flex">
                     <button type="button" data-target="{{ path('produit_show', {'id': produit.id}) }}" class="produit_show btn btn-outline-success mx-1 ">
                         <i class="fas fa-eye"></i>
@@ -44,7 +44,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Recherche incorrect</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -65,11 +65,8 @@
             </div>
         </div>
     </div>
-{#    <a href="{{ path('produit_new') }}">#}
-{#        <button class="btn-primary">Ajouter un Produit</button>#}
-{#    </a>#}
 
-{#    //TODO mettre la modale en place#}
+
     <div class="d-flex justify-content-center">
         <button type="button" data-target="{{ path('produit_new') }}" class="add_produit btn btn-outline-info rounded-pill ">
             Ajouter un nouveau Produit

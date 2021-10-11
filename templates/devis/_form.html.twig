@@ -1,4 +1,54 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+
+
+{#{{ form_start(form) }}#}
+{#    {{ form_widget(form) }}#}
+{#    <button class="btn">{{ button_label|default('Save') }}</button>#}
+{#{{ form_end(form) }}#}
+<div>
+
+
+        {{ form_start(form, {'attr': {'class': 'd-flex '} }) }}
+
+    <div class="my-custom-class-for-errors ">
+        {{ form_errors(form) }}
+    </div>
+
+    <div class="text-black">
+        <div id="js-form-1" class="pt-5">
+            <div class="col my-1 text-black">
+                <h3> Quel est le Client / Entreprise ?</h3>
+                {{ form_widget(form.client) }}
+            </div>
+            <div class="col my-1">
+                <h3> Date de création :</h3>
+                {{ form_widget(form.date) }}
+            </div>
+                    <div class="col my-1">
+                        <button id="js-next-1" class="btn btn-outline-info">Suivant</button>
+                    </div>
+        </div>
+
+        <div id="js-form-2" class="pt-5">
+            <div class="col my-1">
+                <h3> Objet :</h3>
+                {{ form_widget(form.objet) }}
+            </div>
+            <div class="col my-1">
+                <h3> Référence :</h3>
+                {{ form_widget(form.ref) }}
+            </div>
+            <div class="col my-1">
+                <a href="">
+                    <button id="js-next-2" class="btn btn-outline-info">Suivant</button>
+                </a>
+            </div>
+            <div class="col my-1">
+                <button id="js-back-1" class="btn btn-outline-danger">Retour</button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+</div>

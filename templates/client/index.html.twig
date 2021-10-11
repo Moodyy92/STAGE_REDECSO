@@ -23,11 +23,11 @@
         <tbody>
         {% for client in clients %}
             <tr class="table-dark">
-                <td class="table-secondary">{{ client.Nom }}</td>
-                <td class="table-secondary">{{ client.prenom }}</td>
-                <td class="table-secondary">{{ client.entreprise ? 'Yes' : 'No' }}</td>
-                <td class="table-secondary">{{ client.telephone }}</td>
-                <td class="table-secondary">{{ client.email }}</td>
+                <td class="table-secondary text-center">{{ client.Nom }}</td>
+                <td class="table-secondary text-center">{{ client.prenom }}</td>
+                <td class="table-secondary text-success text-center">{{ client.entreprise ? '<i class="fas fa-check-circle"></i>' : ' ' }}</td>
+                <td class="table-secondary text-center">{{ client.telephone }}</td>
+                <td class="table-secondary text-center">{{ client.email }}</td>
                 <td class="d-flex">
                     <button type="button" data-target="{{ path('client_show', {'id': client.id}) }}" class="client_show btn btn-outline-success mx-1 ">
                         <i class="fas fa-eye"></i>
@@ -48,7 +48,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="12">no records found</td>
+                <td colspan="12">Recherche incorrect</td>
             </tr>
         {% endfor %}
         </tbody>

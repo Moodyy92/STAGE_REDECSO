@@ -22,19 +22,28 @@ class DevisRepository extends ServiceEntityRepository
     // /**
     //  * @return Devis[] Returns an array of Devis objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findAllAsArray()
     {
         return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
+
             ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
+            ->getArrayResult()
         ;
     }
-    */
+    public function findOneAsArray($id)
+    {
+        return $this->createQueryBuilder('d')
+
+            ->andWhere('d.id = :id')
+            ->setParameter('id',$id)
+            ->orderBy('d.id', 'ASC')
+            ->getQuery()
+            ->getArrayResult()[0]
+            ;
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Devis

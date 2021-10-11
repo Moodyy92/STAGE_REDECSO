@@ -1,4 +1,24 @@
+{#{{ form_start(form) }}#}
+{#    {{ form_widget(form) }}#}
+{#    <button class="btn btn-outline-primary mt-2">{{ button_label|default('Valider nouvelle marque') }}</button>#}
+{#{{ form_end(form) }}#}
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+<div class="my-custom-class-for-errors ">
+    {{ form_errors(form) }}
+</div>
+
+<div class="text-black">
+    <div class="col my-1">
+        {{ form_widget(form.libelle) }}
+    </div>
+    <div class="col my-1">
+        <button class="btn btn-outline-primary mt-2" id="add_marque">{{ button_label|default('Valider nouvelle marque') }}</button>
+    </div>
+    <div class=" alert alert-warning alert-dismissible fade show" id="error-message" style="display: none;" role="alert">
+            Marque déjà existante.
+        <button type="button" class="btn-close" id="error-close" aria-label="Close"></button>
+    </div>
+</div>
 {{ form_end(form) }}

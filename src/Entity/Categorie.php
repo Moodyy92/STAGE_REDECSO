@@ -40,6 +40,11 @@ class Categorie
         $this->taches = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->id. ' '.$this->libelle;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
