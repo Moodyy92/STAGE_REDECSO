@@ -34,10 +34,16 @@ class Categorie
      */
     private $taches;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Devis::class, mappedBy="categories")
+     */
+    private $devis;
+
     public function __construct()
     {
         $this->categorie = new ArrayCollection();
         $this->taches = new ArrayCollection();
+        $this->devis = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -108,6 +114,33 @@ class Categorie
     {
         if ($this->taches->removeElement($tach)) {
             $tach->removeCategory($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Devis[]
+     */
+    public function getDevis(): Collection
+    {
+        return $this->devis;
+    }
+
+    public function addDevi(Devis $devi): self
+    {
+        if (!$this->devis->contains($devi)) {
+            $this->devis[] = $devi;
+            $devi->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevi(Devis $devi): self
+    {
+        if ($this->devis->removeElement($devi)) {
+            $devi->removeCategory($this);
         }
 
         return $this;

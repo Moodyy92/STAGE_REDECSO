@@ -50,6 +50,22 @@ class Devis
      */
     private $descriptif;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="devis")
+     */
+    private $categories;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Tache::class, inversedBy="devis")
+     */
+    private $taches;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+        $this->taches = new ArrayCollection();
+    }
+
     public function __toString(): string
     {
         return $this->id;
@@ -128,6 +144,54 @@ class Devis
     public function setDescriptif(?string $descriptif): self
     {
         $this->descriptif = $descriptif;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categorie $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): self
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tache[]
+     */
+    public function getTaches(): Collection
+    {
+        return $this->taches;
+    }
+
+    public function addTach(Tache $tach): self
+    {
+        if (!$this->taches->contains($tach)) {
+            $this->taches[] = $tach;
+        }
+
+        return $this;
+    }
+
+    public function removeTach(Tache $tach): self
+    {
+        $this->taches->removeElement($tach);
 
         return $this;
     }

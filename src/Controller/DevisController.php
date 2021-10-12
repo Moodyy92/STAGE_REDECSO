@@ -83,6 +83,31 @@ class DevisController extends AbstractController
         ]);
     }
 
+    #[Route('/get_forms', name:'devis_get_forms', methods: ['GET'])]
+    public function get_forms(): JsonResponse
+    {
+        $categorie = new Categorie();
+        $tache = new Tache();
+        //----------------------------------------FORM CATEGORIE--------------------------------------//
+        $categorieForm = $this->createForm(CategorieType::class, $categorie,[
+            'action'=>$this->generateUrl('categorie_new')
+        ]);
+
+        //----------------------------------------FORM TACHE-----------------------------------------//
+        $tacheForm = $this->createForm(TacheType::class, $tache, [
+            'action'=>$this->generateUrl('tache_new')
+        ]);
+//        dd($tacheForm->createView());
+        return new JsonResponse([
+            'categorieForm' => $this->render('categorie/_form.html.twig',[
+                'categorieForm' =>  $categorieForm->createView()
+            ]),
+            'tacheForm' => $this->render('tache/_form.html.twig',[
+                'tacheForm' =>  $tacheForm->createView()
+            ]),
+        ]);
+    }
+
     #[Route('/{id}', name: 'devis_show', methods: ['GET'])]
     public function show(Devis $devis): Response
     {
@@ -120,4 +145,5 @@ class DevisController extends AbstractController
 
         return $this->redirectToRoute('devis_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

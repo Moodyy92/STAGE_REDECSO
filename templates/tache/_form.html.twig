@@ -1,12 +1,9 @@
 <!------------------------------------ INPUT FORM DE TACHE ------------------------------------>
-            {{ form_start(tacheForm, {'attr': {'class': ''} }) }}
-            <div id="js-form-tache" class="col-md-4">
-                <div class="col my-1 text-black">
-                    <h3>Tache:</h3>
+            {{ form_start(tacheForm) }}
+            <div id="js-form-tache" class="">
+                <div class=" text-black">
                     {{ form_widget(tacheForm) }}
-                </div>
-                <div class="col my-1">
                     <button class="btn btn-outline-info">{{ button_label|default('Save') }}</button>
                 </div>
             </div>
-{#            {{ form_end(tacheForm) }}#}
+            {{ form_end(tacheForm) }}

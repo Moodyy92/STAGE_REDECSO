@@ -39,10 +39,16 @@ class Tache
      */
     private $produit;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Devis::class, mappedBy="taches")
+     */
+    private $devis;
+
     public function __construct()
     {
         $this->tache = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->devis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,6 +113,33 @@ class Tache
     public function setProduit(?Produit $produit): self
     {
         $this->produit = $produit;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Devis[]
+     */
+    public function getDevis(): Collection
+    {
+        return $this->devis;
+    }
+
+    public function addDevi(Devis $devi): self
+    {
+        if (!$this->devis->contains($devi)) {
+            $this->devis[] = $devi;
+            $devi->addTach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevi(Devis $devi): self
+    {
+        if ($this->devis->removeElement($devi)) {
+            $devi->removeTach($this);
+        }
 
         return $this;
     }

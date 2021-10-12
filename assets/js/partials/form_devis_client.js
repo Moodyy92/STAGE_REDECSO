@@ -36,8 +36,8 @@ $(document).on('click','#js-next-2', function
     $.post(form.attr('action'),form.serialize(),function (response){
         console.log(response);
     })
+    $('#js-form-etape-2').show();
 })
-
 
 ////////////////// ETAPE 2 choice catégorie / Tache //////////////////
 $(document).on('click','#js-btn-show-Categorie', function (){
@@ -57,8 +57,32 @@ $(document).on('click','#js-btn-back-form', function (){
 })
 ////////////////// ETAPE 3 choice CREATE PRODUIT ? //////////////////
 //TODO : continué etape 3 pour crée un produit ou non
+
+////////////////// ADD HTML //////////////////
 //TODO : générer le html pour afficher ligne par ligne le résultat d'une categorie/tache
-
-
+$(document).on('click','#js-btn-add-html', function (){
+    let tr = document.createElement("tr")
+    // addHtml.innerHTML = `
+    // <th scope="row">
+    //     <div class="d-flex justify-content-center ">
+    //         {{ include('categorie/_form.html.twig') }}
+    //     </div>
+    //
+    //     <div class="d-flex justify-content-center">
+    //         {{ include('tache/_form.html.twig') }}
+    //     </div>
+    // </th>
+    // <td></td>
+    // <td></td>
+    // <td></td>
+    // <td></td>`
+    let th = document.createElement("th")
+    let div = document.createElement("div")
+    div.classList.add('d-flex')
+    div.classList.add('justify-content-center')
+    fetch('/devis/get_forms')
+        .then(response => response.json())
+        .then(data => console.log(data));
+})
 
 

@@ -17,24 +17,51 @@
             {{ include('devis/_form.html.twig') }}
         </div>
 
-        <div id="js-form-etape-2" class="d-flex justify-content-center row mt-5" >
-            <button id="js-btn-back-form" class="btn btn-outline-danger mx-2 row">Retour</button>
-            <div class="d-flex row">
-                <h3  class="d-flex justify-content-center mx-2">Choisissez l'action que vous souhaitez crée :</h3>
-                <div class="d-flex justify-content-center">
-                    <button id="js-btn-show-Categorie" class="btn btn-outline-primary mx-2">Une catégorie</button>
-                    <button id="js-btn-show-tache" class="btn btn-outline-primary mx-2">Une Tache</button>
+        <div id="js-form-etape-2">
+            <div class="d-flex justify-content-center row mt-5" >
+                <button id="js-btn-back-form" class="btn btn-outline-danger mx-2 row">Retour</button>
+                <div class="d-flex row">
+                    <h3  class="d-flex justify-content-center mx-2">Choisissez l'action que vous souhaitez crée :</h3>
+                    <div class="d-flex justify-content-center">
+                        <button id="js-btn-show-Categorie" class="btn btn-outline-primary mx-2">Une catégorie</button>
+                        <button id="js-btn-show-tache" class="btn btn-outline-primary mx-2">Une Tache</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="d-flex justify-content-center ">
-            {{ include('categorie/_form.html.twig') }}
-        </div>
 
-        <div class="d-flex justify-content-center">
-            {{ include('tache/_form.html.twig') }}
-        </div>
+        <table class="table text-white table-bordered mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Categorie / Tache</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">        <div class="d-flex justify-content-center ">
+                            {{ include('categorie/_form.html.twig') }}
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            {{ include('tache/_form.html.twig') }}
+                        </div></th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+            </tbody>
+            <button id="js-btn-add-html" class="btn btn-outline-info">
+                <i class="fas fa-plus-circle h2"></i>
+            </button>
+        </table>
+
+
 
         <div class="d-flex justify-content-center">
             {{ include('produit/partials/_form_devis.html.twig') }}

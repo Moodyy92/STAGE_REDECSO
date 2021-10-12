@@ -20,10 +20,10 @@ class CategorieType extends AbstractType
         $builder
 //            ->add('categorie')
             ->add('libelle', TextType::class,[
-                'attr' => [
-                    'placeholder' => 'Nom'
-                ],
                 'label' =>'',
+                'attr' => [
+                    'placeholder' => 'Ex: Electricité'
+                ],
                 'required'=>true,])
 
 //            ->add('taches',EntityType::class,[
