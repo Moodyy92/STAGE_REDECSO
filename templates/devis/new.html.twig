@@ -11,15 +11,48 @@
 {% endblock %}
 
 {% block body %}
-<div class="d-flex justify-content-center"  >
-    <container class="d-flex row">
-        <div class="d-flex justify-content-center">
-            {{ include('devis/_form.html.twig') }}
-        </div>
+<div class="w-100 d-flex pt-5" id="js-devis-head">
+    <img src="{{ asset('build/images/'~redecso.logo) }}">
+</div>
 
-        <div id="js-form-etape-2">
-            <div class="d-flex justify-content-center row mt-5" >
-                <button id="js-btn-back-form" class="btn btn-outline-danger mx-2 row">Retour</button>
+<div id="js-client_div" class="d-flex justify-content-end w-100"></div>
+<div id="js-adresse_div" class="d-flex justify-content-end w-100"></div>
+<div id="js-cp_ville_div" class="d-flex justify-content-end w-100"></div>
+
+<div class="d-flex justify-content-center" >
+    <div>
+        <container class="d-flex row">
+            <div class="d-flex justify-content-center">
+                {{ include('devis/_form.html.twig') }}
+            </div>
+
+            <table id="js-tableau" style="display: none;" class="table text-white table-bordered mt-5">
+                <thead>
+                    <tr>
+                        <th scope="col">Categorie / Tache</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Produit</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="js-form-categorie" style="display: none;">
+                        {{ include('categorie/_form.html.twig') }}
+                    </tr>
+                    <tr id="js-form-tache" style="display: none;">
+                        {{ include('tache/_form.html.twig') }}
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="d-flex justify-content-center">
+                {{ include('produit/partials/_form_devis.html.twig') }}
+            </div>
+        </container>
+
+        <div id="js-form-etape-2" style="display: none;">
+            <div class="d-flex justify-content-center row mt-1" >
                 <div class="d-flex row">
                     <h3  class="d-flex justify-content-center mx-2">Choisissez l'action que vous souhaitez crée :</h3>
                     <div class="d-flex justify-content-center">
@@ -29,44 +62,12 @@
                 </div>
             </div>
         </div>
-
-
-        <table class="table text-white table-bordered mt-5">
-            <thead>
-                <tr>
-                    <th scope="col">Categorie / Tache</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Produit</th>
-                    <th scope="col">Quantité</th>
-                    <th scope="col">Prix</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">        <div class="d-flex justify-content-center ">
-                            {{ include('categorie/_form.html.twig') }}
-                        </div>
-
-                        <div class="d-flex justify-content-center">
-                            {{ include('tache/_form.html.twig') }}
-                        </div></th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-            </tbody>
-            <button id="js-btn-add-html" class="btn btn-outline-info">
-                <i class="fas fa-plus-circle h2"></i>
+        <div class="d-flex justify-content-center ">
+            <button id="js-btn-add-html" class="btn btn-sm btn-outline-info justify-content-center">
+                <i class="fas fa-plus-circle"></i>
             </button>
-        </table>
-
-
-
-        <div class="d-flex justify-content-center">
-            {{ include('produit/partials/_form_devis.html.twig') }}
         </div>
-    </container>
+    </div>
 
 
     <footer class=" d-flex ">

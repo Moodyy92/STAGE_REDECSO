@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -84,6 +86,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $deletedAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Entreprise::class, mappedBy="directeur")
+     */
+    private $entreprise_dirigees;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Entreprise::class, inversedBy="users")
+     */
+    private $entreprises;
+
+    public function __construct()
+    {
+        $this->entreprise_dirigees = new ArrayCollection();
+        $this->entreprises = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -291,6 +309,57 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDeletedAt(?\DateTimeImmutable $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entreprise[]
+     */
+    public function getEntrepriseDirigees(): Collection
+    {
+        return $this->entreprise_dirigees;
+    }
+
+    public function addEntrepriseDirigee(Entreprise $entrepriseDirigee): self
+    {
+        if (!$this->entreprise_dirigees->contains($entrepriseDirigee)) {
+            $this->entreprise_dirigees[] = $entrepriseDirigee;
+            $entrepriseDirigee->addDirecteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrepriseDirigee(Entreprise $entrepriseDirigee): self
+    {
+        if ($this->entreprise_dirigees->removeElement($entrepriseDirigee)) {
+            $entrepriseDirigee->removeDirecteur($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entreprise[]
+     */
+    public function getEntreprises(): Collection
+    {
+        return $this->entreprises;
+    }
+
+    public function addEntreprise(Entreprise $entreprise): self
+    {
+        if (!$this->entreprises->contains($entreprise)) {
+            $this->entreprises[] = $entreprise;
+        }
+
+        return $this;
+    }
+
+    public function removeEntreprise(Entreprise $entreprise): self
+    {
+        $this->entreprises->removeElement($entreprise);
 
         return $this;
     }

@@ -18,13 +18,13 @@ class CategorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('categorie')
             ->add('libelle', TextType::class,[
                 'label' =>'',
                 'attr' => [
                     'placeholder' => 'Ex: Electricité'
                 ],
-                'required'=>true,])
+                'required'=>true,
+                ])
 
 //            ->add('taches',EntityType::class,[
 //        'taches' => Tache::class,

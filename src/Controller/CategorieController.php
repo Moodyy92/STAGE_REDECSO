@@ -6,6 +6,7 @@ use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,7 +36,8 @@ class CategorieController extends AbstractController
             $entityManager->persist($categorie);
             $entityManager->flush();
 
-            return $this->redirectToRoute('categorie_index', [], Response::HTTP_SEE_OTHER);
+//            return $this->redirectToRoute('categorie_index', [], Response::HTTP_SEE_OTHER);
+            return new JsonResponse($categorie);
         }
 
         return $this->renderForm('categorie/_form.html.twig', [

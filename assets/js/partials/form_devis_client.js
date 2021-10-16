@@ -1,22 +1,14 @@
 import '../../styles/partials/form_devis_client.scss';
 
 $(".choice-search").select2({
-    // minimumResultsForSearch: Infinity
+    width: 'resolve',
 });
-
-$('#js-back-1').hide();
-$('#js-form-categorie').hide();
-$('#js-form-tache').hide();
-$('#js-form-produit').hide();
-
-//TODO: NE FONCTIONNE PAS , RAISON : INCONUE
-$('#js-form-etape-2').hide();
 
 
 ////////////////// ETAPE 1 BTN FORM NEXT 1 //////////////////
 $(document).on('click','#js-next-1', function (e){
     e.preventDefault()
-    $('#js-form-1').toggle(0,);
+    $('#js-form-1').toggle(0);
     $('#js-back-1').show();
     $('#js-form-2').show();
 })
@@ -31,6 +23,7 @@ $('#js-form-2').hide();
 $(document).on('click','#js-next-2', function
     (e){
     e.preventDefault()
+    $('#js-tableau').show();
     $('#js-form-2').hide();
     let form = $('form[name="devis"]');
     $.post(form.attr('action'),form.serialize(),function (response){

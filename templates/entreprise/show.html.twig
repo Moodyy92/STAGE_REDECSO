@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entreprise{% endblock %}
+
+{% block body %}
+    <h1>Entreprise</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entreprise.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ entreprise.nom }}</td>
+            </tr>
+            <tr>
+                <th>Siret</th>
+                <td>{{ entreprise.siret }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ entreprise.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entreprise.email }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ entreprise.ville }}</td>
+            </tr>
+            <tr>
+                <th>Cp</th>
+                <td>{{ entreprise.cp }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ entreprise.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Capital</th>
+                <td>{{ entreprise.capital }}</td>
+            </tr>
+            <tr>
+                <th>CodeAPE</th>
+                <td>{{ entreprise.codeAPE }}</td>
+            </tr>
+            <tr>
+                <th>NumTVAIntracommunautaire</th>
+                <td>{{ entreprise.numTVAIntracommunautaire }}</td>
+            </tr>
+            <tr>
+                <th>CodeBanque</th>
+                <td>{{ entreprise.codeBanque }}</td>
+            </tr>
+            <tr>
+                <th>CodeGuichet</th>
+                <td>{{ entreprise.codeGuichet }}</td>
+            </tr>
+            <tr>
+                <th>CodeBIC</th>
+                <td>{{ entreprise.codeBIC }}</td>
+            </tr>
+            <tr>
+                <th>NumCompte</th>
+                <td>{{ entreprise.numCompte }}</td>
+            </tr>
+            <tr>
+                <th>CleCompte</th>
+                <td>{{ entreprise.cleCompte }}</td>
+            </tr>
+            <tr>
+                <th>DomiciliationCompte</th>
+                <td>{{ entreprise.domiciliationCompte }}</td>
+            </tr>
+            <tr>
+                <th>IBAN</th>
+                <td>{{ entreprise.IBAN }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ entreprise.logo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('entreprise_index') }}">back to list</a>
+
+    <a href="{{ path('entreprise_edit', {'id': entreprise.id}) }}">edit</a>
+
+    {{ include('entreprise/_delete_form.html.twig') }}
+{% endblock %}

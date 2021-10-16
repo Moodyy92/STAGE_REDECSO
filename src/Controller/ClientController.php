@@ -25,6 +25,7 @@ class ClientController extends AbstractController
     public function new(Request $request): Response
     {
         $client = new Client();
+
         $form = $this->createForm(ClientType::class, $client,[
             'action'=>$this->generateUrl('client_new'),
         ]);

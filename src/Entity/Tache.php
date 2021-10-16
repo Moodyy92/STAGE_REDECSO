@@ -44,6 +44,11 @@ class Tache
      */
     private $devis;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nbProduit;
+
     public function __construct()
     {
         $this->tache = new ArrayCollection();
@@ -140,6 +145,18 @@ class Tache
         if ($this->devis->removeElement($devi)) {
             $devi->removeTach($this);
         }
+
+        return $this;
+    }
+
+    public function getNbProduit(): ?int
+    {
+        return $this->nbProduit;
+    }
+
+    public function setNbProduit(?int $nbProduit): self
+    {
+        $this->nbProduit = $nbProduit;
 
         return $this;
     }

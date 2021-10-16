@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entreprise index{% endblock %}
+
+{% block body %}
+    <h1>Entreprise index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Siret</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Ville</th>
+                <th>Cp</th>
+                <th>Telephone</th>
+                <th>Capital</th>
+                <th>CodeAPE</th>
+                <th>NumTVAIntracommunautaire</th>
+                <th>CodeBanque</th>
+                <th>CodeGuichet</th>
+                <th>CodeBIC</th>
+                <th>NumCompte</th>
+                <th>CleCompte</th>
+                <th>DomiciliationCompte</th>
+                <th>IBAN</th>
+                <th>Logo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entreprise in entreprises %}
+            <tr>
+                <td>{{ entreprise.id }}</td>
+                <td>{{ entreprise.nom }}</td>
+                <td>{{ entreprise.siret }}</td>
+                <td>{{ entreprise.adresse }}</td>
+                <td>{{ entreprise.email }}</td>
+                <td>{{ entreprise.ville }}</td>
+                <td>{{ entreprise.cp }}</td>
+                <td>{{ entreprise.telephone }}</td>
+                <td>{{ entreprise.capital }}</td>
+                <td>{{ entreprise.codeAPE }}</td>
+                <td>{{ entreprise.numTVAIntracommunautaire }}</td>
+                <td>{{ entreprise.codeBanque }}</td>
+                <td>{{ entreprise.codeGuichet }}</td>
+                <td>{{ entreprise.codeBIC }}</td>
+                <td>{{ entreprise.numCompte }}</td>
+                <td>{{ entreprise.cleCompte }}</td>
+                <td>{{ entreprise.domiciliationCompte }}</td>
+                <td>{{ entreprise.IBAN }}</td>
+                <td>{{ entreprise.logo }}</td>
+                <td>
+                    <a href="{{ path('entreprise_show', {'id': entreprise.id}) }}">show</a>
+                    <a href="{{ path('entreprise_edit', {'id': entreprise.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="20">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('entreprise_new') }}">Create new</a>
+{% endblock %}
