@@ -11,22 +11,32 @@
 {% endblock %}
 
 {% block body %}
+
 <div class="w-100 d-flex pt-5" id="js-devis-head">
     <img src="{{ asset('build/images/'~redecso.logo) }}">
 </div>
 
-<div id="js-client_div" class="d-flex justify-content-end w-100"></div>
-<div id="js-adresse_div" class="d-flex justify-content-end w-100"></div>
-<div id="js-cp_ville_div" class="d-flex justify-content-end w-100"></div>
+
+
+     <div>
+         <div id="js-client_div" class="d-flex justify-content-end w-100"></div>
+         <div id="js-adresse_div" class="d-flex justify-content-end w-100"></div>
+         <div id="js-cp_ville_div" class="d-flex justify-content-end w-100"></div>
+     </div>
+    <div>
+        <div id="js-objet_div" class="d-flex justify-content-start w-100 "></div>
+        <div id="js-reference_div" class="d-flex justify-content-start w-100"></div>
+    </div>
+
 
 <div class="d-flex justify-content-center" >
-    <div>
+    <div id="vue-devis">
         <container class="d-flex row">
             <div class="d-flex justify-content-center">
                 {{ include('devis/_form.html.twig') }}
             </div>
 
-            <table id="js-tableau" style="display: none;" class="table text-white table-bordered mt-5">
+            <table id="js-tableau" style="display: none;" class="table text-black table-bordered mt-5">
                 <thead>
                     <tr>
                         <th scope="col">Categorie / Tache</th>
@@ -67,6 +77,25 @@
                 <i class="fas fa-plus-circle"></i>
             </button>
         </div>
+
+
+        <footer class=" d-flex flex-column w-100 text-center ">
+            <div class="d-flex justify-content-center w-100 pt-4">
+                RIB : <br>
+                Code Banque : {{  redecso.codeBanque }} Code Guichet : {{ redecso.codeGuichet}} Code BIC : {{ redecso.codeBIC }} <br>
+                Numéro de compte : {{ redecso.numCompte}} Clé : {{ redecso.cleCompte }}<br>
+                Domiciliation : {{ redecso.domiciliationCompte }}<br>
+                Numéro de Compte IBAN : {{ redecso.IBAN }}<br>
+
+            </div>
+
+            <div class="d-flex justify-content-center w-100 pt-4">
+                {{ redecso.nom }} {{ redecso.adresse}} {{ redecso.cp}} {{ redecso.ville }}. SARL au Capital de {{ redecso.capital }}€. <br>
+                N° Siret : {{ redecso.siret }} - Code APE : {{ redecso.codeAPE}} - N° TVA intracommunautaire : {{ redecso.numTVAIntracommunautaire }}<br>
+                Direction Commercial: Vandeputte Hervé 06.09.22.22.26 / Direction Technique: Haddadi Tahar 06.28.23.92.77 <br>
+                Adresse Mail : {{ redecso.email }}
+            </div>
+        </footer>
     </div>
 
 

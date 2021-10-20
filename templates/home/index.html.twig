@@ -13,8 +13,6 @@
 
 
     {% block body %}
-
-
     <section class="portfolio-experiment h-100 w-100 d-flex justify-content-around flex-column ">
 
         <div class="d-flex justify-content-around ">
@@ -55,32 +53,28 @@
     </section>
 
 
+        <!-- Footer -->
+        <footer id="footer_social" class=" text-center text-white">
+            <!-- Grid container -->
+            <div class="container">
 
+                <!-- Section: Social media -->
+                <section class="mb-4">
 
-{#        <div class="row justify-content-around ">#}
-{#            <a href="{{ path('devis_index') }}" class="col-5 m-1 col-xs-10 ">#}
+                    <!-- Linkedin -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+                    <!-- Github -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="https://github.com/Moodyy92" role="button"><i class="fab fa-github"></i></a>
+                </section>
+                <!-- Section: Social media -->
+            </div>
 
-{#                <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">#}
-{#                    Devis#}
-{#                </button>#}
-{#            </a>#}
-
-{#            <a href="" class="col-5 m-1 col-xs-10 ">#}
-{#                <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">#}
-{#                    Facture#}
-{#                </button>#}
-{#            </a>#}
-
-{#            <a href="{{ path('client_index') }}" class="col-5 m-1 col-xs-10 ">#}
-{#                <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">#}
-{#                    Client#}
-{#                </button>#}
-{#            </a>#}
-
-{#            <a href="{{ path('produit_index') }}" class="col-5 m-1 col-xs-10 ">#}
-{#                <button class="h-100 w-100 d-flex justify-content-center align-content-center   border rounded m-2">#}
-{#                    Produit#}
-{#                </button>#}
-{#            </a>#}
-{#        </div>#}
+            <!-- Copyright -->
+            <div class="text-center" style="">
+                © 2020 Copyright:
+                <a class="text-white">Mathieu Rollet</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
     {% endblock %}

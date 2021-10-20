@@ -10,7 +10,8 @@
 {% block body %}
     <h1>Devis index</h1>
 
-    <table id="dataTable" class="table table-bordered table-stripped text-white my-5">
+
+    <table id="dataTable" class="table table-bordered table-stripped text-white my-1">
         <thead>
             <tr>
                 <th>Devis N° </th>
@@ -53,13 +54,11 @@
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('devis_new') }}">
-    <button class="add_client btn btn-outline-info rounded-pill ">Crée un nouveau devis</button>
-    </a>
-    <a href="{{ path('tache_new') }}">
-        <button class="add_client btn btn-outline-info rounded-pill ">New Tache</button>
-    </a>
-    <a href="{{ path('categorie_new') }}">
-        <button class="add_client btn btn-outline-info rounded-pill ">New Categorie</button>
-    </a>
+
+    <div class="d-flex justify-content-center">
+        <a href="{{ path('devis_new') }}">
+            <button class="add_client btn btn-outline-info rounded-pill ">Crée un nouveau devis</button>
+        </a>
+    </div>
+
 {% endblock %}

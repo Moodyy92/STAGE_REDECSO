@@ -6,6 +6,7 @@ use App\Entity\Tache;
 use App\Form\TacheType;
 use App\Repository\TacheRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,7 +23,7 @@ class TacheController extends AbstractController
     }
 
     #[Route('/new', name: 'tache_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, TacheRepository $tacheRepository): Response
     {
         $tache = new Tache();
         $form = $this->createForm(TacheType::class, $tache);
@@ -33,7 +34,8 @@ class TacheController extends AbstractController
             $entityManager->persist($tache);
             $entityManager->flush();
 
-            return $this->redirectToRoute('tache_index', [], Response::HTTP_SEE_OTHER);
+            $tache_array = $tacheRepository->findBy0neAsArray($tache->getId());
+            return new JsonResponse($tache_array);
         }
 
         return $this->renderForm('tache/new.html.twig', [
