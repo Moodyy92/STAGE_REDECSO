@@ -30,14 +30,23 @@ Encore
     .addEntry('login', './assets/js/login.js')
     .addEntry('home', './assets/js/home.js')
     .addEntry('client', './assets/js/client.js' )
-    .addEntry('produit', './assets/js/produit.js' )
-    .addEntry('devis', './assets/js/devis.js' )
-    .addEntry('marque', './assets/js/marque.js' )
-    .addEntry('navbar', './assets/js/partials/navbar.js')
     .addEntry('js/app', './assets/app.js')
     .addStyleEntry('css/app', './assets/styles/app.scss')
+
+    .addEntry('produit', './assets/js/produit.js' )
+    .addEntry('produit_new', './assets/js/produit/new.js')
+
+    .addEntry('devis', './assets/js/devis.js' )
+    .addEntry('devis_show', './assets/js/devis/devis_show.js' )
+    .addEntry('devis_client', './assets/js/devis/form_devis_client.js')
+    .addEntry('navtool_devis', './assets/js/partials/navtool_devis.js')
+
+    .addEntry('marque', './assets/js/marque.js' )
+    .addEntry('navbar', './assets/js/partials/navbar.js')
+
     .addEntry('tache', './assets/js/tache.js' )
-    .addEntry('devis_client', './assets/js/partials/form_devis_client.js')
+
+
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

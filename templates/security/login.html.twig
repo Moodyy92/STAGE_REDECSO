@@ -15,42 +15,17 @@
 {#            <section>#}
                 <form method="post">
 
-{#                    {% if error %}#}
-{#                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
-{#                    {% endif %}#}
-
-{#                    {% if app.user %}#}
-{#                        <div class="mb-3">#}
-{#                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>#}
-{#                        </div>#}
-{#                    {% endif %}#}
-
-{#                    <label>#}
-{#                        <div class="label-text">Connectez-vous :</div>#}
-{#                    </label>#}
-
-{#                    <label for="inputEmail">#}
-{#                        <input type="email" value="{{ last_username }}" name="email"name="email" id="email inputEmail" autocomplete="email" required  />#}
-{#                        <div class="label-text">Email</div>#}
-{#                    </label>#}
-
-{#                    <label for="inputPassword">#}
-{#                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required />#}
-{#                        <div class="label-text">Phone Number</div>#}
-{#                    </label>#}
-{#                    <input type="hidden" name="_csrf_token"#}
-{#                           value="{{ csrf_token('authenticate') }}"#}
-{#                    >#}
-{#                    <button type="submit" value="Submit">connection</button>#}
-
-
 
                     <h1 class="d-flex align-items-center justify-content-center h3 mb-3 font-weight-normal">Connectez-vous :</h1>
 
-                    <label class="d-flex align-items-center justify-content-center " for="inputEmail">Email :</label>
+                    {% if error %}
+                        <div class="alert alert-danger mx-1">Identifiants invalides.</div>
+                    {% endif %}
+
+                    <label class="mb-1 d-flex align-items-center justify-content-center " for="inputEmail">Email :</label>
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
 
-                    <label class="d-flex mt-2 align-items-center justify-content-center" for="inputPassword">Mot de passe :</label>
+                    <label class="mb-1 d-flex mt-2 align-items-center justify-content-center" for="inputPassword">Mot de passe :</label>
                     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
 
@@ -58,16 +33,16 @@
                            value="{{ csrf_token('authenticate') }}"
                     >
 
-                    {#
-                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                        See https://symfony.com/doc/current/security/remember_me.html
 
-                        <div class="checkbox mb-3">
+{#                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
+{#                        See https://symfony.com/doc/current/security/remember_me.html#}
+
+                        <div class="checkbox mt-2">
                             <label>
                                 <input type="checkbox" name="_remember_me"> Remember me
                             </label>
                         </div>
-                    #}
+
 
                     <div class="d-flex align-items-center justify-content-center" >
                         <button class="btn mt-3  btn-outline-primary" type="submit">

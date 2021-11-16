@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
+use App\Repository\DevisRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,12 +34,21 @@ class CategorieController extends AbstractController
         $categorieForm->handleRequest($request);
 
         if ($categorieForm->isSubmitted() && $categorieForm->isValid()) {
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($categorie);
             $entityManager->flush();
 
-//            return $this->redirectToRoute('categorie_index', [], Response::HTTP_SEE_OTHER);
-            return new JsonResponse($categorie);
+            $devis_id = $request->request->get('categorie_devis_id');
+
+            $devis = $devisRepository->find($devis_id);
+            $categorie->addDevi($devis);
+            $entityManager->persist($categorie);
+            $entityManager->flush();
+
+            $categorie_array = $categorieRepository->findOneAsArray($categorie->getId());
+
+            return new JsonResponse($categorie_array);
         }
 
         return $this->renderForm('categorie/_form.html.twig', [
@@ -55,20 +66,21 @@ class CategorieController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'categorie_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Categorie $categorie): Response
+    public function edit(Request $request, int $id, CategorieRepository $categorieRepository, EntityManagerInterface $em ): Response
     {
-        $form = $this->createForm(CategorieType::class, $categorie);
-        $form->handleRequest($request);
+        $categorie = $categorieRepository->find($id);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if (@$request->request->get('libelle') && $categorie){
+            $categorie->setLibelle($request->request->get('libelle'));
+            $em->persist($categorie);
+            $em->flush();
+            $categorieArray = $categorieRepository->findOneAsArray($categorie->getId());
 
-            return $this->redirectToRoute('categorie_index', [], Response::HTTP_SEE_OTHER);
+            return new JsonResponse($categorieArray);
         }
 
         return $this->renderForm('categorie/edit.html.twig', [
             'categorie' => $categorie,
-            'form' => $form,
         ]);
     }
 

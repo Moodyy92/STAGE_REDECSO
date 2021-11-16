@@ -20,7 +20,7 @@ class TacheRepository extends ServiceEntityRepository
     }
 
 
-    public function findBy0neAsArray($id)
+    public function find0neAsArray($id)
     {
         return @$this->createQueryBuilder('t')
             ->addSelect('p')
