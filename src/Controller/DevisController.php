@@ -13,6 +13,7 @@ use App\Form\TacheType;
 use App\Repository\CategorieRepository;
 use App\Repository\ClientRepository;
 use App\Repository\DevisRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/devis')]
 class DevisController extends AbstractController
 {
+
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->entityManager = $em;
+    }
+
     #[Route('/', name: 'devis_index', methods: ['GET'])]
     public function index(DevisRepository $devisRepository, CategorieRepository $categorieRepository): Response
     {
@@ -36,11 +45,10 @@ class DevisController extends AbstractController
     public function new(Request $request, DevisRepository $devisRepository, ClientRepository $clientRepository): Response
     {
         $devis = new Devis();
-        $categorie = new Categorie();
-        $tache = new Tache();
-        $produit = new Produit();
+        $datas = $this->devis_layout($devis);
+
         //----------------------------------------FORM DEVIS-----------------------------------------//
-        $form = $this->createForm(DevisType::class, $devis);
+        $form = $datas['form'];
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,33 +59,10 @@ class DevisController extends AbstractController
 //            dd($devis_array);
             $client_array = $clientRepository->findOneAsArray($devis->getClient()->getId());
             $devis_array['client'] = $client_array;
-
             return new JsonResponse($devis_array);
         }
 
-        //----------------------------------------FORM CATEGORIE--------------------------------------//
-        $categorieForm = $this->createForm(CategorieType::class, $categorie,[
-            'action'=>$this->generateUrl('categorie_new')
-        ]);
-
-        //----------------------------------------FORM TACHE-----------------------------------------//
-        $tacheForm = $this->createForm(TacheType::class, $tache, [
-            'action'=>$this->generateUrl('tache_new')
-        ]);
-
-        //----------------------------------------FORM PRODUIT-----------------------------------------//
-
-        $produitForm = $this->createForm(ProduitType::class, $produit, [
-            'action'=>$this->generateUrl('produit_new')
-        ]);
-
-        return $this->renderForm('devis/new.html.twig', [
-            'devi' => $devis,
-            'form' => $form,
-            'categorieForm' => $categorieForm,
-            'tacheForm' => $tacheForm,
-            'produitForm' => $produitForm,
-        ]);
+        return $this->renderForm('devis/new.html.twig', $datas);
     }
 
     #[Route('/get_forms', name:'devis_get_forms', methods: ['GET'])]
@@ -109,9 +94,12 @@ class DevisController extends AbstractController
     #[Route('/{id}', name: 'devis_show', methods: ['GET'])]
     public function show(Devis $devis): Response
     {
-        return $this->render('devis/show.html.twig', [
-            'devi' => $devis,
-        ]);
+        $datas = $this->devis_layout($devis);
+//        dd($datas);
+        $datas['devi'] = $devis;
+
+
+        return $this->renderForm('devis/show.html.twig', $datas);
     }
 
     #[Route('/{id}/edit', name: 'devis_edit', methods: ['GET', 'POST'])]
@@ -142,6 +130,42 @@ class DevisController extends AbstractController
         }
 
         return $this->redirectToRoute('devis_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    private function devis_layout($devis) : array
+    {
+        $entrepriseRepository = $this->entityManager->getRepository('App:Entreprise');
+        $redecso = $entrepriseRepository->findOneBy(['nom'=>'REDECSO']);
+        $categorie = new Categorie();
+        $tache = new Tache();
+        $produit = new Produit();
+
+
+        //----------------------------------------FORM CATEGORIE--------------------------------------//
+        $categorieForm = $this->createForm(CategorieType::class, $categorie,[
+            'action'=>$this->generateUrl('categorie_new')
+        ]);
+
+        //----------------------------------------FORM TACHE-----------------------------------------//
+        $tacheForm = $this->createForm(TacheType::class, $tache, [
+            'action'=>$this->generateUrl('tache_new')
+        ]);
+
+        //----------------------------------------FORM PRODUIT-----------------------------------------//
+
+        $produitForm = $this->createForm(ProduitType::class, $produit, [
+            'action'=>$this->generateUrl('produit_new')
+        ]);
+
+        //----------------------------------------FORM DEVIS-----------------------------------------//
+        $form = $this->createForm(DevisType::class, $devis);
+
+        return compact('redecso', 'categorieForm', 'tacheForm', 'produitForm', 'form');
+        /**
+         * [
+         *      'redecso' => $redecso,
+         * ]
+         */
     }
 
 }

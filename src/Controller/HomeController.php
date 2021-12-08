@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     public function index(ClientRepository $clientRepository): Response
     {
         $clientList = $clientRepository->findAll();
-//        dd($clientList);
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'clients' =>$clientList,
