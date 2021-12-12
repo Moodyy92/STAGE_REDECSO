@@ -42,13 +42,12 @@ class ProduitRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult()
             ;
-        /*
-         * SELECT p.id AS value, p.libelle AS label, p.prix AS ValuePrix
-         * FROM produits AS p
-         * WHERE p.libelle LIKE '%%'
-         */
     }
-
+    /*
+     * SELECT p.id AS value, p.libelle AS label, p.prix AS ValuePrix
+     * FROM produits AS p
+     * WHERE p.libelle LIKE '%%'
+     */
     /*
     public function findOneBySomeField($value): ?Produit
     {

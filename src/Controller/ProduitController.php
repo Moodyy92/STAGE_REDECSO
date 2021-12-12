@@ -50,6 +50,7 @@ class ProduitController extends AbstractController
     {
         $term = $request->get('term');
 //        dd($term);
+        var_dump($term);
         $produits = $produitRepository->findByLibelleAsArray($term);
 
      return new JsonResponse($produits);
