@@ -1,9 +1,10 @@
 <!------------------------------------ INPUT FORM DE TACHE ------------------------------------>
             {{ form_start(tacheForm) }}
-            <div id="js-form-tache" class="">
-                <div class=" text-black">
-                    {{ form_widget(tacheForm) }}
-                    <button class="btn btn-outline-info">{{ button_label|default('Save') }}</button>
-                </div>
-            </div>
+                    <td></td>
+                    <td>{{ form_widget(tacheForm.libelle) }}</td>
+                    <td class="w-100 text-dark">{{ form_widget(tacheForm.produit) }} </td>
+                    <td>{{ form_widget(tacheForm.nbProduit) }} </td>
+                    <td>{{ form_widget(tacheForm.prix) }}
+                         <button id="add_tache" class="btn btn-outline-info">{{ button_label|default('Save') }}</button>
+                    </td>
             {{ form_end(tacheForm) }}

@@ -25,7 +25,7 @@ class CategorieController extends AbstractController
     }
 
     #[Route('/new', name: 'categorie_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, CategorieRepository $categorieRepository, DevisRepository $devisRepository): Response
     {
         $categorie = new Categorie();
         $categorieForm = $this->createForm(CategorieType::class, $categorie,[

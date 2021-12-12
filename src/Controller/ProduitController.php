@@ -37,7 +37,8 @@ class ProduitController extends AbstractController
             $entityManager->persist($produit);
             $entityManager->flush();
 
-            return $this->redirectToRoute('produit_index', [], Response::HTTP_SEE_OTHER);
+            $produit_array = $produitRepository->findOneAsArray($produit->getId());
+            return new JsonResponse($produit_array);
         }
 
         return $this->render('/produit/new.html.twig', [

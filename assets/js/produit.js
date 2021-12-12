@@ -56,13 +56,6 @@ $('.add_produit').on('click',function (){
         modal.show();
     })
 })
-
-$(document).on('click','#add_marque',function (){
-    let toto= $(document.createElement('option'));
-    toto.val('toto')
-        .text('toto');
-    $('#produit_marque').append(toto);
-})
 ////////////////// BTN VALIDER MARQUE//////////////////
 $(document).on('click','#add_marque',function (e){  //au clic sur le btn de validation de marque
     e.preventDefault();                                                                                     //on empeche l'execution normal du btn (envoie du formulaire)

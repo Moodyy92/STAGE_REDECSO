@@ -28,7 +28,7 @@ class TacheRepository extends ServiceEntityRepository
             ->andWhere('t.id = :val')
             ->setParameter('val', $id)
             ->getQuery()
-            ->getResult()
+            ->getArrayResult()[0]
         ;
     }
 

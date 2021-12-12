@@ -15,7 +15,7 @@ import './bootstrap';
 //////////////////// DATATABLE ////////////////////
 window.datatablefr = require('./datatable_fr.json');
 var $  = require( 'jquery' );
-require('bootstrap');
+import 'bootstrap';
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
 require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');

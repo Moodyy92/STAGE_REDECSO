@@ -1,42 +1,38 @@
-{% extends 'base.html.twig' %}
+{% extends '/devis/devis_layout.html.twig' %}
 
-{% block title %}Devis{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('devis_show') }}
+{% endblock %}
+{% block tbody %}
 
-{% block body %}
-    <h1>Devis</h1>
+    <div id="js-info-client">
+        <div id="scss-info-client">
+            <div id="js-client_div" class="d-flex justify-content-end w-100">{{ devi.client }}</div>
+            <div id="js-adresse_div" class="d-flex justify-content-end w-100">{{ devi.client.adresse }}</div>
+            <div id="js-cp_ville_div" class="d-flex justify-content-end w-100">{{ devi.client.codePostal }}</div>
+        </div>
+        <div id="">
+            <div id="js-objet_div" class="d-flex justify-content-start w-100 ">{{ devi.objet }}</div>
+            <div id="js-reference_div" class="d-flex justify-content-start w-100"> {{ devi.ref }}</div>
+        </div>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ devi.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ devi.date ? devi.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Objet</th>
-                <td>{{ devi.objet }}</td>
-            </tr>
-            <tr>
-                <th>Ref</th>
-                <td>{{ devi.ref }}</td>
-            </tr>
-            <tr>
-                <th>Signature</th>
-                <td>{{ devi.signature ? devi.signature|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Descriptif</th>
-                <td>{{ devi.descriptif }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('devis_index') }}">back to list</a>
+            {% for categorie in devi.categories %}
+            <tr>
+                <td>{{ categorie.libelle }} :</td>
+                {% for taches in categorie.taches %}
+                    <tr>
+                        <td></td>
+                        <td>{{ taches.libelle }}</td>
+                        <td>{{ taches.produit.libelle }}</td>
+                        <td></td>
+                        <td>{{ taches.produit.prix }}</td>
+                    </tr>
+                {% endfor %}
+            </tr>
+            {% endfor %}
 
-    <a href="{{ path('devis_edit', {'id': devi.id}) }}">edit</a>
 
-    {{ include('devis/_delete_form.html.twig') }}
 {% endblock %}
