@@ -18,6 +18,7 @@ $(".choice-search-produit").select2({
         processResults: function (data) {
             return {
                 results: $.map(data, function (item) {
+                    console.log(item)
                     return {
                         text: item.text,
                         id: item.id,
