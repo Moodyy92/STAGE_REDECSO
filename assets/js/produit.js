@@ -56,6 +56,20 @@ $('.add_produit').on('click',function (){
         modal.show();
     })
 })
+////////////////// ENVOI FORM PRDUIT //////////////////
+$(document).on('submit', 'form[name="produit"]', function(e) {
+    e.preventDefault();
+    let datas = $(this).serialize();
+    $.ajax({
+        url: $(this).attr('action'),
+        method: 'post',
+        data: datas,
+        success: function(response) {
+            window.location.reload()
+        }
+    })
+})
+
 ////////////////// BTN VALIDER MARQUE//////////////////
 $(document).on('click','#add_marque',function (e){  //au clic sur le btn de validation de marque
     e.preventDefault();                                                                                     //on empeche l'execution normal du btn (envoie du formulaire)

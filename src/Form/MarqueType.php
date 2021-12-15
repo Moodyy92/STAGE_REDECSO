@@ -15,7 +15,8 @@ class MarqueType extends AbstractType
         $builder
             ->add('libelle', TextType::class,[
                 'attr' => [
-                    'placeholder' => 'Nouvelle marque'
+                    'placeholder' => 'Nouvelle marque',
+                    'autocomplete' => 'off',
                 ],
                 'label' =>'',
                 'required'=>true,])

@@ -19,7 +19,8 @@ class ProduitType extends AbstractType
         $builder
             ->add('libelle', TextType::class,[
                 'attr' => [
-                    'placeholder' => 'Nom'
+                    'placeholder' => 'Nom',
+                    'autocomplete' => 'off'
                 ],
                 'label' =>'',
                 'required'=>true,])
